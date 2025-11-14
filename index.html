@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="kn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Ad Booster — Canva Editor (Kannada + English)</title>
+
+  <!-- style.css ಬೇಕಾದರೆ ಇದೇ ಫೋಲ್ಡರ್‍ನಲ್ಲಿ create ಮಾಡಿ -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Google font + Noto Sans Kannada for better Kannada rendering -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Noto+Sans+Kannada:wght@400;700&display=swap" rel="stylesheet">
+
+  <meta name="description" content="AI Ad Booster — generate realistic Kannada + English posters, edit Canva-style, free & paid options." />
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="header">
+      <div>
+        <div class="title">AI Ad Booster</div>
+        <div class="small">Kannada + English • Realistic posters • Canva-style editor</div>
+      </div>
+      <div>
+        <button id="reloadBtn" class="btn small">Reload</button>
+      </div>
+    </header>
+
+    <section class="controls">
+      <input id="businessInput" class="input" placeholder="Business name / type (e.g., Fresh Juice Shop)" />
+      <input id="langInput" class="input" placeholder="Language (auto / kn / en)" value="auto" />
+      <input id="descInput" class="input" placeholder="Short description or offer (e.g., 50% off today)" />
+      <div style="display:flex; gap:10px; align-items:center;">
+        <button id="generateBtn" class="btn">Generate Posters</button>
+        <select id="styleSelect" class="input" style="min-width:140px;">
+          <option value="modern">Modern Poster</option>
+          <option value="retro">Retro Poster</option>
+          <option value="minimal">Minimal Poster</option>
+        </select>
+      </div>
+
+      <div class="status" id="status"></div>
+    </section>
+
+    <section class="grid">
+      <main>
+        <div id="cardsWrap" style="margin-top:12px;"></div>
+
+        <div class="hint">Tip: Generate -> click "Edit" on a poster -> customize text/position/colors -> Download</div>
+      </main>
+
+      <aside class="sidebar">
+        <div class="small">Editor / Preview</div>
+        <div id="editorWrap" class="previewWrap">
+          <div id="editorPlaceholder" style="opacity:0.8">Generate posters and click <strong>Edit</strong> to open the full Canva-style editor here.</div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div class="small">Upgrade to Premium</div>
+          <div class="hint">Premium unlocks HD downloads and unlimited posters.</div>
+
+          <!-- Stripe Checkout button (calls serverless endpoint) -->
+          <button id="upgradeBtn" class="btn" style="background: linear-gradient(90deg,#ffd166,#ff7a00); margin-top:8px;">
+            Upgrade — ₹99 / month (Stripe)
+          </button>
+
+          <!-- UPI manual fallback -->
+          <div style="margin-top:10px;">
+            <div class="small">OR pay via UPI (manual)</div>
+            <div style="display:flex; gap:8px; margin-top:8px; align-items:center;">
+              <input id="upiInput" class="input" placeholder="Enter your UPI ID (e.g., yourid@upi)" />
+              <button id="showQrBtn" class="btn" style="background:#06b6d4;">Show QR</button>
+            </div>
+            <div id="upiQrWrap" style="margin-top:12px;"></div>
+            <div style="margin-top:8px;">
+              <input id="txnRef" class="input" placeholder="Paste transaction reference after payment" />
+              <button id="submitTxn" class="btn" style="background:#22c55e; margin-top:6px;">Submit Payment Proof</button>
+            </div>
+            <div id="manualStatus" class="small" style="margin-top:8px; color:#bcd;"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <div class="small">Settings</div>
+          <div class="hint">Paste your API keys in <code>script.js</code> or set environment variables for serverless endpoints.</div>
+        </div>
+      </aside>
+    </section>
+
+    <footer style="margin-top:18px; text-align:center; opacity:0.8; font-size:0.9rem;">
+      © AI Ad Booster — Made for small businesses. Paste your Gemini & Unsplash keys into <code>script.js</code> or env.
+    </footer>
+  </div>
+
+  <!-- main script (next message will include full script.js) -->
+  <script src="./script.js" type="module"></script>
+</body>
+</html>
